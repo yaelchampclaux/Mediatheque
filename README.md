@@ -43,7 +43,7 @@ This creates a "ProjetMediatheque" folder.
 Be careful not to close the window in which the conatiners are running! 
 Open another window to type the following commands
 
-# Use the environment
+# Use the environment for the first time (to do once)
 
 1. Access the PHP container shell (in a command window other than the one in which the containers are launched)
 
@@ -77,7 +77,7 @@ Then click on "mediatheque" database, then on "Import" then "Browse", then selec
     - Documentation http://localhost:8813/
 
 When you have locally installed the vendors (1 and 2), created the base (3), filled the base (4),
-the following times you will simply have to launch the environment to develop.
+__the following times you will simply have to launch the environment to develop.__
 
 # Other useful commands
 

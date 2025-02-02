@@ -76,7 +76,7 @@ Puis cliquer sur Importer puis parcourir, puis sélectionner le fichier fill-med
     - Accés à mkdocs http://localhost:8813/
 
 Quand vous aurez localement installé les vendors (1 & 2), créé la base (3), rempli la base (4), 
-les fois suivantes vous aurez simplement à lancer l'environnement pour dévelloper.
+__les fois suivantes vous aurez simplement à lancer l'environnement pour dévelloper.__
 
 # Autres commandes utiles
 

@@ -33,8 +33,9 @@ Solution : Taper les commandes plutôt que les copier-coller.
 
 # Lancer l'environnement de développement 
 
-Se placer dans le dossier Mediatheque de manière à voir le fichier docker-compose_x86.yml\à partir d'une fenêtre de commande Ubuntu de préférence
+Se placer dans le dossier Mediatheque/ de manière à voir le fichier docker-compose_x86.yml\à partir d'une fenêtre de commande Ubuntu de préférence
 
+``cd Mediatheque``\
 ``docker-compose -f docker-compose_x86.yml up --build``
 
 Attention à ne pas fermer la fenêtre dans laquelle s'exécutent les conatiners !!! 

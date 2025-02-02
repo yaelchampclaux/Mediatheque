@@ -33,9 +33,9 @@ Solution: Type commands rather than copy and paste them.
 
 ``git clone https://github.com/yaelchampclaux/ProjetMediatheque.git``
 
-This creates a "ProjetMediatheque" folder.
+This creates a "Mediatheque" folder.
 
-# Launch the development environment 
+# Launch the development environment in a Ubuntu window
 
 ``cd Mediatheque``\
 ``docker-compose -f docker-compose_x86.yml up --build``

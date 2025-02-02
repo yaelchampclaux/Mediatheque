@@ -40,7 +40,7 @@ Se placer dans le dossier ProjetMediatheque de manière à voir le fichier docke
 Attention à ne pas fermer la fenêtre dans laquelle s'exécutent les conatiners !!! 
 Ouvrir une autre fenêtre pour taper les commandes suivantes
 
-# Utiliser l'environnement 
+# Utiliser l'environnement pour la première fois
 
 1. Accéder au shell du conteneur PHP (dans une autre fenêtre de commande que celle où sont lancés les containers)
 
@@ -56,24 +56,27 @@ En effet elles ne sont pas dans le dépôt git car elle peuvent être générée
 Remarque : une fois que vous avez généré les vendors, ils seront dans le volume attaché à votre container.\ 
 Vous n'aurez pas à les générer à nouveau sauf si vous ajoutez de nouveaux. 
 
-4. Créer la base de données en synchronisant (depuis /site dans le container php) 
+3. Créer la base de données en synchronisant (depuis /site dans le container php) 
 
 ``php bin/console doctrine:schema:update --force``
 
 Cela permet de générer la base de donnés dans MySQL à partir de notre code (les Entity dans le dossier /src de notre site)
 
-5. Ajouter les données dans la médiathèque (par PhpMyAdmin) 
+4. Ajouter les données dans la médiathèque (par PhpMyAdmin) 
 
 Avec votre navigateur aller dans phpMyAdmin http://localhost:8812/
 Puis cliquer sur Importer puis parcourir, puis sélectionner le fichier fill-mediatheque.sql qui se trouve dans le dossier /data du ProjetMediatheque
 
-6. Tester
+5. Tester
 
     - Accés au site http://localhost:8811/
 
     - Accés à PhpMyAdmin http://localhost:8812/
 
     - Accés à mkdocs http://localhost:8813/
+
+Quand vous aurez localement installé les vendors (1 & 2), créé la base (3), rempli la base (4), 
+les fois suivantes vous aurez simplement à lancer l'environnement pour dévelloper.
 
 # Autres commandes utiles
 

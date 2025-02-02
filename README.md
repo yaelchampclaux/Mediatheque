@@ -49,7 +49,7 @@ Open another window to type the following commands
 
 ``docker exec -it php-mediatheque /bin/bash``
 
-2. Install symfony vendors
+2. Install symfony vendors (they are not on git)
 
 ``cd site``\
 ``../composer.phar install``
@@ -75,6 +75,9 @@ Then click on "mediatheque" database, then on "Import" then "Browse", then selec
     - PhpMyAdmin http://localhost:8812/
 
     - Documentation http://localhost:8813/
+
+When you have locally installed the vendors (1 and 2), created the base (3), filled the base (4),
+the following times you will simply have to launch the environment to develop.
 
 # Other useful commands
 

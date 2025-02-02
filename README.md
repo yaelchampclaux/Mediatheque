@@ -37,7 +37,7 @@ This creates a "ProjetMediatheque" folder.
 
 # Launch the development environment 
 
-``cd ProjetMediatheque``\
+``cd Mediatheque``\
 ``docker-compose -f docker-compose_x86.yml up --build``
 
 Be careful not to close the window in which the conatiners are running! 

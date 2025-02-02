@@ -1,4 +1,4 @@
-# ProjetMediatheque
+# Mediatheque
 TP d'ingénierie informatique du Master2 IIN de L'Université Jean Jaures.\ 
 Support pour la Découverte de Docker, Symfony (Doctrine, Twig), Git. 
 

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TypeAuteur{% endblock %}
+
+{% block body %}
+    <h1>Create new TypeAuteur</h1>
+
+    {{ include('type_auteur/_form.html.twig') }}
+
+    <a href="{{ path('app_type_auteur_index') }}">back to list</a>
+{% endblock %}

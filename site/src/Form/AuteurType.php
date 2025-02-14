@@ -19,7 +19,7 @@ class AuteurType extends AbstractType
             ->add('prenom')
             ->add('type', EntityType::class, [
                 'class' => TypeAuteur::class,
-                'choice_label' => 'id',
+                'choice_label' => 'type',
             ])
             ->add('oeuvres', EntityType::class, [
                 'class' => Oeuvre::class,

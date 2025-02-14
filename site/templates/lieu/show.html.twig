@@ -3,7 +3,7 @@
 {% block title %}Lieu{% endblock %}
 
 {% block body %}
-    <h1>Lieu</h1>
+    <h1>{{ lieu.adresse }}</h1>
 
     <table class="table">
         <tbody>
@@ -12,7 +12,7 @@
                 <td>{{ lieu.id }}</td>
             </tr>
             <tr>
-                <th>Adresse</th>
+                <th>Ville</th>
                 <td>{{ lieu.adresse }}</td>
             </tr>
             <tr>
@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_lieu_index') }}">back to list</a>
+    <a href="{{ path('app_lieu_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_lieu_edit', {'id': lieu.id}) }}">edit</a>
+    <a href="{{ path('app_lieu_edit', {'id': lieu.id}) }}">Modifier</a>
 
     {{ include('lieu/_delete_form.html.twig') }}
 {% endblock %}

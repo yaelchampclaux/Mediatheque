@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Serie index{% endblock %}
+{% block title %}Liste des Séries{% endblock %}
 
 {% block body %}
-    <h1>Serie index</h1>
+    <h1>Liste des Séries</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Titre</th>
-                <th>Nbtomes</th>
-                <th>Info</th>
-                <th>actions</th>
+                <th>Nombre de Tomes</th>
+                <th>Informations</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +23,17 @@
                 <td>{{ serie.nbtomes }}</td>
                 <td>{{ serie.info }}</td>
                 <td>
-                    <a href="{{ path('app_serie_show', {'id': serie.id}) }}">show</a>
-                    <a href="{{ path('app_serie_edit', {'id': serie.id}) }}">edit</a>
+                    <a href="{{ path('app_serie_show', {'id': serie.id}) }}">Voir</a>
+                    <a href="{{ path('app_serie_edit', {'id': serie.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_serie_new') }}">Create new</a>
+    <a href="{{ path('app_serie_new') }}">Créer une nouvelle série</a>
 {% endblock %}

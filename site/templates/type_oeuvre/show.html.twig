@@ -18,9 +18,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_type_oeuvre_index') }}">back to list</a>
+    <a href="{{ path('app_type_oeuvre_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_type_oeuvre_edit', {'id': type_oeuvre.id}) }}">edit</a>
+    <a href="{{ path('app_type_oeuvre_edit', {'id': type_oeuvre.id}) }}">éditer</a>
 
     {{ include('type_oeuvre/_delete_form.html.twig') }}
 {% endblock %}

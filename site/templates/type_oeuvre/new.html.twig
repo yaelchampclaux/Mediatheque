@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New TypeOeuvre{% endblock %}
+{% block title %}Nouveau TypeOeuvre{% endblock %}
 
 {% block body %}
-    <h1>Create new TypeOeuvre</h1>
+    <h1>Créer un TypeOeuvre</h1>
 
     {{ include('type_oeuvre/_form.html.twig') }}
 
-    <a href="{{ path('app_type_oeuvre_index') }}">back to list</a>
+    <a href="{{ path('app_type_oeuvre_index') }}">Retour à la liste</a>
 {% endblock %}

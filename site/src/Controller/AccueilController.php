@@ -19,4 +19,12 @@ class AccueilController extends AbstractController
     {
         return $this->render('Accueil/politiques.html.twig');
     }
+
+    #[Route('/qui-sommes-nous', name: 'qui_sommes_nous', methods: ['GET'])]
+    public function quiSommesNous(): Response
+    {
+        return $this->render('Accueil/qui_sommes_nous.html.twig');
+    }
+
 }
+

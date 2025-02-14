@@ -8,10 +8,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AccueilController extends AbstractController
 {
-    #[Route(name: 'accueil', methods: ['GET'])]
+    #[Route("/",name: 'accueil', methods: ['GET'])]
     public function index(): Response
     {
         return $this->render('Accueil/index.html.twig');
+    }
+
+    #[Route("/politique-de-confidentialite",name: 'politique-de-confidentialite', methods: ['GET'])]
+    public function politics(): Response
+    {
+        return $this->render('Accueil/politiques.html.twig');
     }
 
     #[Route('/qui-sommes-nous', name: 'qui_sommes_nous', methods: ['GET'])]
@@ -21,3 +27,4 @@ class AccueilController extends AbstractController
     }
 
 }
+

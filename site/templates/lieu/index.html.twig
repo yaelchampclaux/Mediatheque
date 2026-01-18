@@ -23,17 +23,17 @@
                 <td>{{ lieu.latitude }}</td>
                 <td>{{ lieu.longitude }}</td>
                 <td>
-                    <a href="{{ path('app_lieu_show', {'id': lieu.id}) }}">Voir</a>
-                    <a href="{{ path('app_lieu_edit', {'id': lieu.id}) }}">Modifier</a>
+                    <a href="{{ path('app_lieu_show', {'id': lieu.id}) }}">Show</a>
+                    <a href="{{ path('app_lieu_edit', {'id': lieu.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Pas d'entrées trouvées</td>
+                <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_lieu_new') }}">Nouveau</a>
+    <a href="{{ path('app_lieu_new') }}">New</a>
 {% endblock %}

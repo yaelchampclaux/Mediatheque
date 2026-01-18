@@ -33,6 +33,7 @@ final class OeuvreController extends AbstractController
             $entityManager->persist($oeuvre);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'œuvre a été créée avec succès !');
             return $this->redirectToRoute('app_oeuvre_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -59,6 +60,7 @@ final class OeuvreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'œuvre a été modifiée avec succès !');
             return $this->redirectToRoute('app_oeuvre_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,6 +76,8 @@ final class OeuvreController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$oeuvre->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($oeuvre);
             $entityManager->flush();
+            
+            $this->addFlash('success', 'L\'œuvre a été supprimée avec succès !');
         }
 
         return $this->redirectToRoute('app_oeuvre_index', [], Response::HTTP_SEE_OTHER);

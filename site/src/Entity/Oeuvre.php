@@ -43,7 +43,7 @@ class Oeuvre
     private ?Serie $serie = null;
 
     #[ORM\ManyToOne(inversedBy: 'oeuvres')]
-    private ?Lieu $Lieu = null;
+    private ?Lieu $lieu = null;
 
     public function __construct()
     {
@@ -51,9 +51,9 @@ class Oeuvre
         $this->editions = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->titre;
+        return $this->titre ?? 'Nouvelle œuvre';
     }
 
     public function getId(): ?int
@@ -69,7 +69,6 @@ class Oeuvre
     public function setTitre(string $titre): static
     {
         $this->titre = $titre;
-
         return $this;
     }
 
@@ -81,7 +80,6 @@ class Oeuvre
     public function setPhoto(?string $photo): static
     {
         $this->photo = $photo;
-
         return $this;
     }
 
@@ -93,7 +91,6 @@ class Oeuvre
     public function setAnnee(?int $annee): static
     {
         $this->annee = $annee;
-
         return $this;
     }
 
@@ -110,14 +107,12 @@ class Oeuvre
         if (!$this->auteurs->contains($auteur)) {
             $this->auteurs->add($auteur);
         }
-
         return $this;
     }
 
     public function removeAuteur(Auteur $auteur): static
     {
         $this->auteurs->removeElement($auteur);
-
         return $this;
     }
 
@@ -134,14 +129,12 @@ class Oeuvre
         if (!$this->editions->contains($edition)) {
             $this->editions->add($edition);
         }
-
         return $this;
     }
 
     public function removeEdition(Edition $edition): static
     {
         $this->editions->removeElement($edition);
-
         return $this;
     }
 
@@ -153,7 +146,6 @@ class Oeuvre
     public function setType(?TypeOeuvre $type): static
     {
         $this->type = $type;
-
         return $this;
     }
 
@@ -165,19 +157,17 @@ class Oeuvre
     public function setSerie(?Serie $serie): static
     {
         $this->serie = $serie;
-
         return $this;
     }
 
     public function getLieu(): ?Lieu
     {
-        return $this->Lieu;
+        return $this->lieu;
     }
 
-    public function setLieu(?Lieu $Lieu): static
+    public function setLieu(?Lieu $lieu): static
     {
-        $this->Lieu = $Lieu;
-
+        $this->lieu = $lieu;
         return $this;
     }
 }

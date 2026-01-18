@@ -6,6 +6,7 @@ use App\Repository\AuteurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AuteurRepository::class)]
 class Auteur
@@ -16,12 +17,14 @@ class Auteur
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le nom ou pseudonyme est requis')]
     private ?string $nomoupseudo = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $prenom = null;
 
     #[ORM\ManyToOne(inversedBy: 'auteurs')]
+    #[ORM\JoinColumn(onDelete: 'SET NULL')]
     private ?TypeAuteur $type = null;
 
     /**
@@ -35,11 +38,19 @@ class Auteur
         $this->oeuvres = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return (($this->prenom == '')||($this->prenom == NULL)) ? $this->nomoupseudo : $this->nomoupseudo . ' ' . $this->prenom;
+        if (empty($this->prenom)) {
+            return $this->nomoupseudo ?? 'Auteur inconnu';
+        }
+        return $this->prenom . ' ' . $this->nomoupseudo;
     }
     
+    public function getNomComplet(): string
+    {
+        return $this->__toString();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,7 +64,6 @@ class Auteur
     public function setNomoupseudo(string $nomoupseudo): static
     {
         $this->nomoupseudo = $nomoupseudo;
-
         return $this;
     }
 
@@ -65,7 +75,6 @@ class Auteur
     public function setPrenom(?string $prenom): static
     {
         $this->prenom = $prenom;
-
         return $this;
     }
 
@@ -77,7 +86,6 @@ class Auteur
     public function setType(?TypeAuteur $type): static
     {
         $this->type = $type;
-
         return $this;
     }
 
@@ -95,7 +103,6 @@ class Auteur
             $this->oeuvres->add($oeuvre);
             $oeuvre->addAuteur($this);
         }
-
         return $this;
     }
 
@@ -104,7 +111,6 @@ class Auteur
         if ($this->oeuvres->removeElement($oeuvre)) {
             $oeuvre->removeAuteur($this);
         }
-
         return $this;
     }
 }

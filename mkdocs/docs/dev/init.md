@@ -10,9 +10,7 @@ The Project has started following theses steps :
 
     `docker exec -it php-mediatheque /bin/bash`
 
-    `rmdir site/public`
-
-    `php ./composer.phar create-project symfony/skeleton site`
+    `composer create-project symfony/skeleton site`
 
 this as created an empty symfony site with a default Symfony page
 
@@ -131,4 +129,14 @@ localhost:8811/
 
 * 10 modify base.html.twig to add a menu and bootstrap
 
-* 10 Your turn...
+* Don't forget to add useful Monolog and Profile Symfony module with (inside container php-mediatheque)
+
+``composer require --dev symfony/profiler-pack``
+
+To have a PHP debug bar when dev
+
+``composer require symfony/monolog-bundle``  
+
+To make you website log what is happening in /var/dev or /var/prod
+
+* 12 Your turn...

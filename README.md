@@ -2,18 +2,24 @@
 Computer engineering project for Master2 IIN at Université Jean Jaures. 
 Support for the discovery of Docker, Symfony (Doctrine, Twig), Git. 
 
-# Linux & Mac prerequisites
-Docker and docker-compose installed.
+# Linux prerequisites
+docker and docker-compose installed.
 
 # Windows prerequisites
 Linux WSL2 and DockerDesktop installed.
 
+# MAC prerequisites 
+
+DockerDesktop installed. (for older MAC install an old version of Docker)
+
 # Usage
 
 ## WSL, Linux, MAC users
-This tp is designed to run in WSL (or linux or mac).
 
-## Windows users (cmd, powershell)
+__This tp is designed to run in WSL (or linux or mac)__
+
+## Windows users can run it with cmd or powershell windows at their own risks
+
 It can also be launched from a Windows command window (cmd) or a Powershell window.
 
 Sometimes some files cannot be read ... replace the Unix linefeeds (LF) with Windows linefeeds (CRLF).
@@ -38,10 +44,10 @@ This creates a "Mediatheque" folder.
 # Launch the development environment in a Ubuntu window
 
 ``cd Mediatheque``\
-``docker-compose -f docker-compose_x86.yml up --build``
+``docker-compose up --build -d``
 
-Be careful not to close the window in which the conatiners are running! 
-Open another window to type the following commands
+-d option means "detached mode".
+If you prefer to not use it, be careful to not close the window where containers are running.
 
 # Use the environment for the first time (to do once)
 
@@ -52,14 +58,14 @@ Open another window to type the following commands
 2. Install symfony vendors (they are not on git)
 
 ``cd site``\
-``../composer.phar install``
+``composer install``
 
 This loads the dependencies described in our composer.json file. 
 They are not in the git repository, as they can be generated with the previous command.
 
 3. Create the database into db-mediatheque container by synchronizing (from /site in the php container) 
 
-php bin/console doctrine:schema:update --force
+``php bin/console doctrine:schema:update --force``
 
 This generates the database into MySQL from our code (the Entities in the /src folder of our site).
 
@@ -111,7 +117,7 @@ Container management commands
 
 ### Usage stat
 
-docker stat
+``docker stat``
 
 ## Symfony 
 
@@ -121,18 +127,15 @@ For the following commands, we'll assume you're in the /site folder of the php-m
 
 ``php bin/console list``
 
-### Retrieve the last database migration
+### Make a migration file
 
-``php bin/console doctrine:migrations:latest``
-> Sample response DoctrineMigrations\Version20220211020200
+``php bin/console make:migration``
+
+For instance when you have change an entity or add one, the database isn't synchronized anymore, so you create a migration file which indicates your last modifications, then you perform the migration with the following command to apply your entity changes to the tables inside your database.
 
 ### Perform migration
 
 ``php bin/console doctrine:migrations:migrate``
-
-### Perform a specific migration
-
-``php bin/console doctrine:migrations:migrate DoctrineMigrations\Version20220211020200``
 
 ### View site routes
 
@@ -141,6 +144,8 @@ For the following commands, we'll assume you're in the /site folder of the php-m
 ### Clear caches 
 
 ``php bin/console cache:clear``
+
+Just after you did something inside a page/controller, before controlling the result with your browser.
 
 ### Install assets (images, css, javascript) in public folder
 

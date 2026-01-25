@@ -2,11 +2,15 @@
 TP d'ingénierie informatique du Master2 IIN de L'Université Jean Jaures.\ 
 Support pour la Découverte de Docker, Symfony (Doctrine, Twig), Git. 
 
-# Pre-requis Linux & Mac
+# Pre-requis Linux
 Avoir installé docker et docker-compose
 
 # Pre-requis Windows
-Avoir installer Linux WSL2 et DockerDesktop
+Avoir installé Linux WSL2 et DockerDesktop
+
+# Pre-requis MAC
+
+Avoir installé DockerDesktop
 
 # Utilisation
 
@@ -14,7 +18,7 @@ Avoir installer Linux WSL2 et DockerDesktop
 
 __Ce tp est fait pour fonctionner dans WSL (ou linux ou mac).__
 
-## Utilisateurs Windows (cmd, powershell) (déconseillé)
+## Utilisateurs Windows peuvent utiliser les fenêtres cmd ou powershell à leurs risques et périls (déconseillé)
 Il est également possible de le lancer depuis une fenêtre de commande Windows (cmd) ou une fenêtre Powershell\
 Parfois certains fichiers ne peuvent pas etre lus, il faut remplacer les sauts de ligne Unix (LF) en sauts de ligne Windows (CRLF)
 
@@ -36,10 +40,11 @@ Solution : Taper les commandes plutôt que les copier-coller.
 Se placer dans le dossier Mediatheque/ de manière à voir le fichier docker-compose_x86.yml\à partir d'une fenêtre de commande Ubuntu de préférence
 
 ``cd Mediatheque``\
-``docker-compose -f docker-compose_x86.yml up --build``
+``docker-compose docker-compose.yml up --build``
 
-Attention à ne pas fermer la fenêtre dans laquelle s'exécutent les conatiners !!! 
-Ouvrir une autre fenêtre pour taper les commandes suivantes
+Attention à ne pas fermer la fenêtre dans laquelle s'exécutent les conatiners !!! Et Ouvrir une autre fenêtre pour taper les commandes suivantes
+
+ou alors ajouter l'option -d à la commande précédente pour "detached mode" vous pourrez continuer à utiliser la fenêtre courante.
 
 # Utiliser l'environnement pour la première fois
 
@@ -50,7 +55,7 @@ Ouvrir une autre fenêtre pour taper les commandes suivantes
 2. Installer les vendors symfony
 
 ``cd  site``\
-``../composer.phar install``
+``composer install``
 
 Cela charge les dépendences décrites dans notre fichier composer.json. 
 En effet elles ne sont pas dans le dépôt git car elle peuvent être générées avec la commande précédente\
@@ -89,10 +94,11 @@ Pour les commandes suivantes, on considère que l'on est placé dans le dossier 
 
 ``php bin/console list``
 
-### Récupérer la dernière migration de la base de données
+### Créer un fichier de migration
 
-``php bin/console doctrine:migrations:latest``
-> Exemple de réponse DoctrineMigrations\Version20220211020200
+``php bin/console make:migration``
+
+Par exemple après avoir apporter une modification à une entité ou ajouté une entité car la base de donnée n'est plus synchrone avec le code PHP. On crée donc un fichier de migration puis on l'applique avec la commande suivante pour que la base de données devienne synchrone avec vos modifications.
 
 ### Réaliser la migration
 

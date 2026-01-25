@@ -1,4 +1,4 @@
-# Welcomme on M2IIN Mediatheque project Documentation
+# Welcome on M2IIN Mediatheque project Documentation
 
 It's a Computer engineering project for Master2 IIN at Université Jean Jaures. 
 Support for the discovery of Docker, Symfony (Doctrine, Twig), Git. 
@@ -11,9 +11,7 @@ Support for the discovery of Docker, Symfony (Doctrine, Twig), Git.
 
 * You succeed to execute dev env with 
 
-`docker-compose -f docker-compose_x86.yml up --build`
-
-You must have followed recommandations [Here](dev.md)
+`docker-compose docker-compose.yml up --build`
 
 ## You can accesss to  website, documentation and phpMyAdmin tool 
 

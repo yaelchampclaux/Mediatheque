@@ -1,11 +1,11 @@
 # About
 
 Computer engineering project for Master2 IIN at Université Jean Jaures. 
-Support for the discovery of Docker, Symfony (Doctrine, Twig), Git. 
+Support for the discovery of Docker and docker compose, Symfony (Doctrine, Twig), Git. 
 
 The version of Mediatheque isn't defined.
 
-The core of Mediatheque is Symfony and its version is __Symfony 7.2.3__.
+The core of Mediatheque is Symfony and its version is __Symfony 7.4.3 LTS__.
 
 Symfony uses __php 8.3__ and is connected to __MySQL 8.0__.
 

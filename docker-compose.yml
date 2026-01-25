@@ -26,7 +26,8 @@ services:
     ports:
       - "8812:80"
     environment:
-      - MYSQL_ROOT_PASSWORD:mediathequeroot
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: mediathequeroot
     networks:
       - dev
 #PHP (Serveur web)

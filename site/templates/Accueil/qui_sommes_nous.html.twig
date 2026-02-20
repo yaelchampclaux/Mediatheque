@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qui sommes-nous ?{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Qui sommes-nous ?</h1>
+    <p>Ce site réalisé par le master 2 I2N de l'université Jean Jaurès.</p>
+    <p>L’adresse fictive de notre site internet est : 
+        <a href="https://mediathequem2i2n.fr">https://mediathequem2i2n.fr</a>
+    </p>
+
+    <hr>
+
+    <h3>Technologies utilisées</h3>
+    <ul>
+        <li>PHP 8.2</li>
+        <li>Symfony 6.4 / 7.0</li>
+        <li>Docker (Compose v2)</li>
+        <li>Twig (Motor de plantillas)</li>
+    </ul>
+
+    <hr>
+
+    <h3>Équipe de développement</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dev in desarrolladores %}
+                <tr>
+                    <td>{{ dev.nombre }}</td>
+                    <td>{{ dev.apellido }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 

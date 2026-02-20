@@ -1,35 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des types d'Oeuvres{% endblock %}
+{% block title %}Liste des œuvres{% endblock %}
 
 {% block body %}
-    <h1>TypeOeuvre index</h1>
+    <h1>Liste des œuvres</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Type</th>
-                <th>actions</th>
+                <th>Identifiant</th>
+                <th>Titre</th>
+                <th>Photo</th>
+                <th>Année</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for type_oeuvre in type_oeuvres %}
+        {% for oeuvre in oeuvres %}
             <tr>
-                <td>{{ type_oeuvre.id }}</td>
-                <td>{{ type_oeuvre.type }}</td>
+                <td>{{ oeuvre.id }}</td>
+                <td>{{ oeuvre.titre }}</td>
+                <td>{{ oeuvre.photo }}</td>
+                <td>{{ oeuvre.annee }}</td>
                 <td>
-                    <a href="{{ path('app_type_oeuvre_show', {'id': type_oeuvre.id}) }}">voir</a>
-                    <a href="{{ path('app_type_oeuvre_edit', {'id': type_oeuvre.id}) }}">éditer</a>
+                    <a href="{{ path('app_oeuvre_show', {'id': oeuvre.id}) }}">Voir</a>
+                    <a href="{{ path('app_oeuvre_edit', {'id': oeuvre.id}) }}">Éditer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">pas d'entrées trouvées</td>
+                <td colspan="5">Pas d’entrées trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_type_oeuvre_new') }}">Nouveau</a>
+    <a href="{{ path('app_oeuvre_new') }}">Nouvelle œuvre</a>
 {% endblock %}

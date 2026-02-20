@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Modifier TypeOeuvre</h1>
 
-    {{ include('type_oeuvre/_form.html.twig', {'button_label': 'mettre à jour'}) }}
+    {{ include('type_oeuvre/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_type_oeuvre_index') }}">retour à la liste</a>
+    <a href="{{ path('app_type_oeuvre_index') }}">back to list</a>
 
     {{ include('type_oeuvre/_delete_form.html.twig') }}
 {% endblock %}

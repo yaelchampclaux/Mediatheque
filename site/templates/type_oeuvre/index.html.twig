@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des types d'Oeuvres{% endblock %}
+{% block title %}TypeOeuvre index{% endblock %}
 
 {% block body %}
     <h1>TypeOeuvre index</h1>
@@ -19,18 +19,18 @@
                 <td>{{ type_oeuvre.id }}</td>
                 <td>{{ type_oeuvre.type }}</td>
                 <td>
-                    <a href="{{ path('app_type_oeuvre_show', {'id': type_oeuvre.id}) }}">voir</a>
-                    <a href="{{ path('app_type_oeuvre_edit', {'id': type_oeuvre.id}) }}">éditer</a>
+                    <a href="{{ path('app_type_oeuvre_show', {'id': type_oeuvre.id}) }}">show</a>
+                    <a href="{{ path('app_type_oeuvre_edit', {'id': type_oeuvre.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">pas d'entrées trouvées</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_type_oeuvre_new') }}">Nouveau</a>
+    <a href="{{ path('app_type_oeuvre_new') }}">Create new</a>
 {% endblock %}
 

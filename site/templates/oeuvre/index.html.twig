@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
+HEAD
+{% block stylesheets %}
+    {{ parent() }}
+    {# CDN de DataTables #}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+{% endblock %}
+{% block title %}Oeuvre index{% endblock %}
+
 
 {% block title %}Liste des œuvres{% endblock %}
+
 
 {% block body %}
     <h1>Liste des œuvres</h1>
 
-    <table class="table">
+    <table id="tabla-oeuvres" class="table">
         <thead>
             <tr>
                 <th>Identifiant</th>
@@ -36,4 +45,20 @@
     </table>
 
     <a href="{{ path('app_oeuvre_new') }}">Nouvelle œuvre</a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#tabla-oeuvres').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.13.7/i18n/fr-FR.json" // Para que esté en francés
+                }
+            });
+        });
+    </script>
 {% endblock %}

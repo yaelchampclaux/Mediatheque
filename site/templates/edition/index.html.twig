@@ -5,14 +5,14 @@
 {% block body %}
     <h1>Edition index</h1>
 
-    <table class="table">
+    <table id="editionTable" class="table display">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Siteweb</th>
                 <th>Info</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -36,4 +36,13 @@
     </table>
 
     <a href="{{ path('app_edition_new') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('#editionTable').DataTable();
+        });
+    </script>
 {% endblock %}

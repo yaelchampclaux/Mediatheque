@@ -1,1 +1,39 @@
 <a href="{{ path('politique_confidentialite') }}">Politique de confidentialité</a>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Médiathèque{% endblock %}</title>
+
+    {# --- CSS globales + DataTables --- #}
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    {% endblock %}
+</head>
+
+<body>
+
+    <header>
+        <h1>Médiathèque</h1>
+    </header>
+
+    <main>
+        {% block body %}
+        {% endblock %}
+    </main>
+
+    <footer style="margin-top: 40px; padding: 20px; text-align: center;">
+        <a href="{{ path('politique_confidentialite') }}">Politique de confidentialité</a>
+    </footer>
+
+    {# --- JS global + jQuery + DataTables --- #}
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    {% endblock %}
+</body>
+</html>

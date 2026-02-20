@@ -17,16 +17,23 @@ class AccueilController extends AbstractController
     #[Route('/qui-sommes-nous', name: 'app_qui_sommes_nous')]
     public function quiSommesNous(): Response
     {
-  
-    $listaDesarrolladores = [
-        ['nombre' => 'Juan', 'apellido' => 'Pérez'],
-        ['nombre' => 'Halima', 'apellido' => 'Bentaj'],
-        ['nombre' => 'Salomé', 'apellido' => 'Fuenmayor'],
-    ];
-    return $this->render('Accueil/qui_sommes_nous.html.twig', [
-        // 'nombre_en_twig' => $variable_en_php
-        'desarrolladores' => $listaDesarrolladores 
-    ]);
+        $listaDesarrolladores = [
+            ['nombre' => 'Juan', 'apellido' => 'Pérez'],
+            ['nombre' => 'Halima', 'apellido' => 'Bentaj'],
+            ['nombre' => 'Salomé', 'apellido' => 'Fuenmayor'],
+        ];
+        return $this->render('Accueil/qui_sommes_nous.html.twig', [
+            // 'nombre_en_twig' => $variable_en_php
+            'desarrolladores' => $listaDesarrolladores 
+        ]);
+        }
     }
+
+    #[Route('/politique-confidentialite', name: 'politique_confidentialite', methods: ['GET'])]
+    public function politiqueConfidentialite(): Response
+    {
+        return $this->render('Accueil/politique_confidentialite.html.twig');
+    }
+
 }
 

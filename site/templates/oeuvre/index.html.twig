@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+HEAD
 {% block stylesheets %}
     {{ parent() }}
     {# CDN de DataTables #}
@@ -6,17 +7,21 @@
 {% endblock %}
 {% block title %}Oeuvre index{% endblock %}
 
+
+{% block title %}Liste des œuvres{% endblock %}
+
+
 {% block body %}
-    <h1>Oeuvre index</h1>
+    <h1>Liste des œuvres</h1>
 
     <table id="tabla-oeuvres" class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Identifiant</th>
                 <th>Titre</th>
                 <th>Photo</th>
-                <th>Annee</th>
-                <th>actions</th>
+                <th>Année</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,19 +32,19 @@
                 <td>{{ oeuvre.photo }}</td>
                 <td>{{ oeuvre.annee }}</td>
                 <td>
-                    <a href="{{ path('app_oeuvre_show', {'id': oeuvre.id}) }}">show</a>
-                    <a href="{{ path('app_oeuvre_edit', {'id': oeuvre.id}) }}">edit</a>
+                    <a href="{{ path('app_oeuvre_show', {'id': oeuvre.id}) }}">Voir</a>
+                    <a href="{{ path('app_oeuvre_edit', {'id': oeuvre.id}) }}">Éditer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Pas d’entrées trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_oeuvre_new') }}">Create new</a>
+    <a href="{{ path('app_oeuvre_new') }}">Nouvelle œuvre</a>
 {% endblock %}
 
 {% block javascripts %}

@@ -18,53 +18,59 @@ final class SerieControllerTest extends WebTestCase
     protected function setUp(): void
     {
         $this->client = static::createClient();
+        $this->client->followRedirects();
+
         $this->manager = static::getContainer()->get('doctrine')->getManager();
         $this->serieRepository = $this->manager->getRepository(Serie::class);
 
         foreach ($this->serieRepository->findAll() as $object) {
             $this->manager->remove($object);
         }
-
         $this->manager->flush();
     }
 
-    public function testIndex(): void
+    public function testIndexNoRecordsFoundInFrench(): void
     {
-        $this->client->followRedirects();
         $crawler = $this->client->request('GET', $this->path);
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Serie index');
 
-        // Use the $crawler to perform additional assertions e.g.
-        // self::assertSame('Some text on the page', $crawler->filter('.p')->first());
+        // Titre de page en FR
+        self::assertPageTitleContains('Liste des séries');
+
+        // "Nouveau" présent
+        self::assertSelectorExists('a:contains("Nouveau")');
+
+        // Aucun enregistrement -> texte FR
+        self::assertSelectorTextContains('table tbody', 'pas d’entrées trouvées');
     }
 
-    public function testNew(): void
+    public function testNewCreatesSerieAndReturnsToList(): void
     {
-        $this->markTestIncomplete();
-        $this->client->request('GET', sprintf('%snew', $this->path));
-
+        $crawler = $this->client->request('GET', sprintf('%snew', $this->path));
         self::assertResponseStatusCodeSame(200);
 
-        $this->client->submitForm('Save', [
-            'serie[titre]' => 'Testing',
-            'serie[nbtomes]' => 'Testing',
-            'serie[info]' => 'Testing',
+        // Bouton "Enregistrer"
+        $this->client->submitForm('Enregistrer', [
+            'serie[titre]' => 'The Witcher',   // titre d'œuvre OK en anglais
+            'serie[nbtomes]' => 7,
+            'serie[info]' => 'Test',
         ]);
 
-        self::assertResponseRedirects($this->path);
-
+        self::assertResponseStatusCodeSame(200);
         self::assertSame(1, $this->serieRepository->count([]));
+
+        // De retour sur l’index : vérifier "Voir" et "Editer"
+        self::assertSelectorExists('a:contains("Voir")');
+        self::assertSelectorExists('a:contains("Editer")');
     }
 
-    public function testShow(): void
+    public function testShowDisplaysSerieAndFrenchBackLink(): void
     {
-        $this->markTestIncomplete();
         $fixture = new Serie();
         $fixture->setTitre('My Title');
-        $fixture->setNbtomes('My Title');
-        $fixture->setInfo('My Title');
+        $fixture->setNbtomes(3);
+        $fixture->setInfo('My Info');
 
         $this->manager->persist($fixture);
         $this->manager->flush();
@@ -72,17 +78,19 @@ final class SerieControllerTest extends WebTestCase
         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Serie');
 
-        // Use assertions to check that the properties are properly displayed.
+        // Lien FR "retour à la liste"
+        self::assertSelectorExists('a:contains("retour à la liste")');
+
+        // Bouton "Effacer" présent sur show (si tu l’affiches là)
+        self::assertSelectorExists('button:contains("Effacer")');
     }
 
-    public function testEdit(): void
+    public function testEditUpdatesSerie(): void
     {
-        $this->markTestIncomplete();
         $fixture = new Serie();
         $fixture->setTitre('Value');
-        $fixture->setNbtomes('Value');
+        $fixture->setNbtomes(1);
         $fixture->setInfo('Value');
 
         $this->manager->persist($fixture);
@@ -90,36 +98,40 @@ final class SerieControllerTest extends WebTestCase
 
         $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
 
-        $this->client->submitForm('Update', [
+        // Bouton "Mettre à jour"
+        $this->client->submitForm('Mettre à jour', [
             'serie[titre]' => 'Something New',
-            'serie[nbtomes]' => 'Something New',
+            'serie[nbtomes]' => 9,
             'serie[info]' => 'Something New',
         ]);
 
-        self::assertResponseRedirects('/serie/');
+        self::assertResponseStatusCodeSame(200);
 
-        $fixture = $this->serieRepository->findAll();
-
-        self::assertSame('Something New', $fixture[0]->getTitre());
-        self::assertSame('Something New', $fixture[0]->getNbtomes());
-        self::assertSame('Something New', $fixture[0]->getInfo());
+        $updated = $this->serieRepository->find($fixture->getId());
+        self::assertSame('Something New', $updated->getTitre());
+        self::assertSame(9, $updated->getNbtomes());
+        self::assertSame('Something New', $updated->getInfo());
     }
 
-    public function testRemove(): void
+    public function testRemoveDeletesSerie(): void
     {
-        $this->markTestIncomplete();
         $fixture = new Serie();
         $fixture->setTitre('Value');
-        $fixture->setNbtomes('Value');
+        $fixture->setNbtomes(2);
         $fixture->setInfo('Value');
 
         $this->manager->persist($fixture);
         $this->manager->flush();
 
         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
-        $this->client->submitForm('Delete');
 
-        self::assertResponseRedirects('/serie/');
+        // Bouton "Effacer"
+        $this->client->submitForm('Effacer');
+
+        self::assertResponseStatusCodeSame(200);
         self::assertSame(0, $this->serieRepository->count([]));
+
+        // Index -> pas d’entrées trouvées
+        self::assertSelectorTextContains('table tbody', 'pas d’entrées trouvées');
     }
 }

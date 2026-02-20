@@ -8,8 +8,8 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ serie.id }}</td>
+                <th>Numero</th>
+                <td>{{ serie.numero }}</td>
             </tr>
             <tr>
                 <th>Titre</th>
@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_serie_index') }}">back to list</a>
+    <a href="{{ path('app_serie_index') }}">retour a la liste</a>
 
-    <a href="{{ path('app_serie_edit', {'id': serie.id}) }}">edit</a>
+    <a href="{{ path('app_serie_edit', {'id': serie.id}) }}">modifier</a>
 
     {{ include('serie/_delete_form.html.twig') }}
 {% endblock %}

@@ -13,4 +13,11 @@ class AccueilController extends AbstractController
     {
         return $this->render('Accueil/index.html.twig');
     }
+
+    #[Route('/politique-confidentialite', name: 'politique_confidentialite', methods: ['GET'])]
+    public function politiqueConfidentialite(): Response
+    {
+        return $this->render('Accueil/politique_confidentialite.html.twig');
+    }
+
 }

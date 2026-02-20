@@ -18,6 +18,7 @@
 <body>
 
 {% block menu %}
+
 <nav class="navbar navbar-expand-sm navbar-light bg-light shadow-sm">
     <div class="container-fluid">
 
@@ -39,10 +40,12 @@
             <li class="nav-item"><a class="nav-link" href="{{ path('app_type_oeuvre_index') }}">Type Oeuvre</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ path('app_type_auteur_index') }}">Type Auteur</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ path('app_lieu_index') }}">Lieu</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ path('app_qui_sommes_nous') }}">Qui sommes-nous ?</a></li>
         </ul>
 
     </div>
 </nav>
+
 {% endblock %}
 
 <div class="container mt-4">
